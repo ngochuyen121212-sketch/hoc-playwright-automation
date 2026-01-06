@@ -7,12 +7,13 @@ test('Open automation exercise website', async ({ page }) => {
     await expect(page).toHaveURL('https://automationexercise.com/');
     
     await page.click('a:has-text("Signup / Login")');
-    await expect(page.locator('text=New user signup')).toBeVisible();
+    await expect(page.getByText('New user signup')).toBeVisible();
 
     await page.fill('input[name="name"]', 'Huyenltn');
     await page.fill('input[data-qa="signup-email"]', 'Huyenltn@gmail.com');
     await page.click('button[data-qa="signup-button"]');
 
-
-     //await page.close();
+    // Verify Enter Account Information is displayed
+    await expect(page.getByText('Enter Account Information')).toBeVisible();
+    //await page.close();
 });
